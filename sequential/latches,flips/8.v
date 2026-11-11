@@ -1,12 +1,14 @@
-// DFF (exams/m2014_q4b) —— 异步复位 AR
 module top_module (
-    input  clk,
-    input  d,
-    input  ar,
-    output reg q
-);
-    always @(posedge clk or posedge ar) begin
-        if (ar) q <= 1'b0;
-        else    q <= d;
+    input clk,
+    input d, 
+    input ar,   // asynchronous reset
+    output q);
+
+always @(posedge clk or posedge ar) begin
+    if (ar) begin
+        q <= 0;
+    end else begin
+        q <= d;
     end
+end
 endmodule
